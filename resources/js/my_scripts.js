@@ -74,40 +74,49 @@ function changeColor(color){
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
 
-function updateWinnerColumn(result){
-	console.log("Hello.");
+/*
+function updateWinnerColumn(winner,row_id){
+	let table = document.getElementById("stats_table");
+	console.log(table.rows[row_id].cells[4].innerHTML)
+	table.rows[row_id].cells[4].innerHTML = winner;
 }
-
-function updateWinnerTable(){
+function updateWinnerTable(result){
 	if(result = 0) {
 		console.log(buffLosses);
 		document.getElementById("losses").innerHTML = buffLosses;
 	}
 	else {
-		console.log(buffWins);
+		//console.log(buffWins);
 		document.getElementById("wins").innerHTML = buffWins;
 	}
 }
+*/
 
 function loadStatsPage(){
-	let buffsWon = false;
-	var buffWins = 0;
-	var buffLosses = 0;
+	//let buffsWon = false;
+	let buffWins = 0;
+	let buffLosses = 0;
 	let table = document.getElementById("stats_table");
-	for(var i = 0, row; row = table.rows[i]; i++){
-		gameResult = table.cells[i][2] - table.cells[i][3];
+	for(var i = 2; i < table.rows.length; i++){
+		let buffScore = parseInt(table.rows[i].cells[2].innerHTML);
+		let opponentScore = parseInt(table.rows[i].cells[3].innerHTML);
+		gameResult = buffScore - opponentScore;
 		if(gameResult < 0) {
-			buffsWon = false;
-			updateWinnerColumn(table.cells[i][1]);
-			updateWinnerTable(0);
+			let opponent = table.rows[i].cells[1].innerHTML;
+			//buffsWon = false;
+			//updateWinnerColumn(table,opponent,i);
+			table.rows[i].cells[4].innerHTML = opponent;
 			buffLosses++;
+			document.getElementById("losses").innerHTML = buffLosses;
+			//updateWinnerTable(0);
 		}
 		else if(gameResult > 0) {
-			buffsWon = true;
-			buffWins += 1;
-			updateWinnerColumn();
-			updateWinnerTable();
+			//buffsWon = true;
+			//updateWinnerColumn();
+			table.rows[i].cells[4].innerHTML = "Colorado";
 			buffWins++;
+			document.getElementById("wins").innerHTML = buffWins;
+			//updateWinnerTable(1);
 		}
 	}
 }
