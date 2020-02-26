@@ -74,49 +74,25 @@ function changeColor(color){
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
 
-/*
-function updateWinnerColumn(winner,row_id){
-	let table = document.getElementById("stats_table");
-	console.log(table.rows[row_id].cells[4].innerHTML)
-	table.rows[row_id].cells[4].innerHTML = winner;
-}
-function updateWinnerTable(result){
-	if(result = 0) {
-		console.log(buffLosses);
-		document.getElementById("losses").innerHTML = buffLosses;
-	}
-	else {
-		//console.log(buffWins);
-		document.getElementById("wins").innerHTML = buffWins;
-	}
-}
-*/
 
 function loadStatsPage(){
-	//let buffsWon = false;
 	let buffWins = 0;
 	let buffLosses = 0;
 	let table = document.getElementById("stats_table");
 	for(var i = 2; i < table.rows.length; i++){
 		let buffScore = parseInt(table.rows[i].cells[2].innerHTML);
 		let opponentScore = parseInt(table.rows[i].cells[3].innerHTML);
-		gameResult = buffScore - opponentScore;
+		let gameResult = buffScore - opponentScore;
 		if(gameResult < 0) {
 			let opponent = table.rows[i].cells[1].innerHTML;
-			//buffsWon = false;
-			//updateWinnerColumn(table,opponent,i);
 			table.rows[i].cells[4].innerHTML = opponent;
 			buffLosses++;
 			document.getElementById("losses").innerHTML = buffLosses;
-			//updateWinnerTable(0);
 		}
 		else if(gameResult > 0) {
-			//buffsWon = true;
-			//updateWinnerColumn();
 			table.rows[i].cells[4].innerHTML = "Colorado";
 			buffWins++;
 			document.getElementById("wins").innerHTML = buffWins;
-			//updateWinnerTable(1);
 		}
 	}
 }
@@ -140,6 +116,26 @@ function loadStatsPage(){
 						
 					After setting all of the anchor tags, update the innerHTML of the dropdown menu.
 					As a note, the id for the dropdown menu is player_selector.
+*/
+/*
+	players is an array to hold each player's information.
+	Fields:
+		name - Football player's name
+		img  - The relative/absolute path to the image file.
+		alt  - The alternative text that describes the image.
+		year - The student's year in college (Freshman, Sophomore, Junior, Senior).
+		major- The student's current college major.
+		games_played    - The number of football games the student has played for the Buffs.
+		pass_yards      - The total number of passing yards in the student's football career for the Buffs.
+		rushing_yards   - The total number of rushing yards in the student's football career for the Buffs.
+		receiving_yards - The total number of receiving yards in the student's football career for the Buffs.
+*/
+function loadPlayersPage(){
+	$.each(players, function(index, value){
+		$('<button href="#" class="btn btn-light" onclick="switchPlayers('+ index + ')">' + value.name +'</button>').appendTo("#player_selector")
+	});
+}
+/*
 		
 		switchPlayers(playerNum) method:
 			parameters: 
@@ -163,5 +159,19 @@ function loadStatsPage(){
 					  avg_r_yards   - the average number of rushing yards for the player's Buff career
 					  avg_rec_yards - the average number of receiving yards for the player's Buff career
 */
-				
+function switchPlayers(playerNum){
+	document.getElementById("p_year").innerHTML = players[playerNum].year;
+	document.getElementById("p_major").innerHTML = players[playerNum].major;
+	document.getElementById("g_played").innerHTML = players[playerNum].games_played;
+	document.getElementById("player_img").src = players[playerNum].img;
+	document.getElementById("p_yards").innerHTML = players[playerNum].pass_yards;
+	document.getElementById("r_yards").innerHTML = players[playerNum].rushing_yards;
+	document.getElementById("rec_yards").innerHTML = players[playerNum].receiving_yards;
+	let avg_p_yards = parseInt(players[playerNum].pass_yards)/parseInt(players[playerNum].games_played);
+	document.getElementById("avg_p_yards").innerHTML = Math.round(avg_p_yards);
+	let avg_r_yards = parseInt(players[playerNum].rushing_yards)/parseInt(players[playerNum].games_played);
+	document.getElementById("avg_r_yards").innerHTML = Math.round(avg_r_yards);
+	let avg_rec_yards = parseInt(players[playerNum].receiving_yards)/parseInt(players[playerNum].games_played);	
+	document.getElementById("avg_rec_yards").innerHTML = Math.round(avg_rec_yards);
+}	
 
