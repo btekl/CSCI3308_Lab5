@@ -132,7 +132,7 @@ function loadStatsPage(){
 */
 function loadPlayersPage(){
 	$.each(players, function(index, value){
-		$('<button href="#" class="btn btn-light" onclick="switchPlayers('+ index + ')">' + value.name +'</button>').appendTo("#player_selector")
+		$('<a href="#" class="dropdown-item" onclick="switchPlayers('+ index + ')">' + value.name +'</a>').appendTo("#player_selector")
 	});
 }
 /*

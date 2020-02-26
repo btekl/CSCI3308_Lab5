@@ -10,11 +10,6 @@
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<link href="../resources/css/my_style.css" rel="stylesheet">
-	<style>
-		dropdown-menu show > option > a:hover{
-			background-color: grey;
-		}
-	</style>
   </head>
   <body onload="loadPlayersPage()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -58,7 +53,7 @@
 					  <button class="btn btn-secondary dropdown-toggle" type="button" id="selectPlayerButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Select a Player
 					  </button>
-					  <div id="player_selector" class="dropdown-menu" aria-labelledby="selectPlayerButton">
+					  <div id="player_selector" class="dropdown-menu btn-block" aria-labelledby="selectPlayerButton">
 					  </div>
 					</div>
 				  </div>
