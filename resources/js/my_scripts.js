@@ -167,11 +167,11 @@ function switchPlayers(playerNum){
 	document.getElementById("p_yards").innerHTML = players[playerNum].pass_yards;
 	document.getElementById("r_yards").innerHTML = players[playerNum].rushing_yards;
 	document.getElementById("rec_yards").innerHTML = players[playerNum].receiving_yards;
-	let avg_p_yards = parseInt(players[playerNum].pass_yards)/parseInt(players[playerNum].games_played);
+	let avg_p_yards = (players[playerNum].pass_yards)/(players[playerNum].games_played);
 	document.getElementById("avg_p_yards").innerHTML = Math.round(avg_p_yards);
-	let avg_r_yards = parseInt(players[playerNum].rushing_yards)/parseInt(players[playerNum].games_played);
+	let avg_r_yards = (players[playerNum].rushing_yards)/(players[playerNum].games_played);
 	document.getElementById("avg_r_yards").innerHTML = Math.round(avg_r_yards);
-	let avg_rec_yards = parseInt(players[playerNum].receiving_yards)/parseInt(players[playerNum].games_played);	
+	let avg_rec_yards = (players[playerNum].receiving_yards)/(players[playerNum].games_played);	
 	document.getElementById("avg_rec_yards").innerHTML = Math.round(avg_rec_yards);
 }	
 
